@@ -1,0 +1,161 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #e9ecef;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 230px;
+    background: #283747;
+    color: #fff;
+    padding: 24px 0;
+    flex-shrink: 0;
+  }
+
+  .sidebar h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f4f6c3;
+    padding: 0 24px 24px;
+  }
+
+  .sidebar nav a {
+    display: block;
+    color: #d6dbe0;
+    text-decoration: none;
+    padding: 14px 24px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .sidebar nav a:hover {
+    background: #34495e;
+    color: #ffffff;
+  }
+
+  .sidebar nav a.active {
+    background: #34495e;
+    color: #f4f6c3;
+    font-weight: 600;
+    border-left: 3px solid #f4f6c3;
+  }
+
+  .sidebar nav a.logout {
+    margin-top: 20px;
+    border-top: 1px solid #3a4a5c;
+  }
+
+  /* Main content */
+  .main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .page-header {
+    background: #2c3e50;
+    color: #f4f6c3;
+    text-align: center;
+    padding: 22px 16px;
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  .content-card {
+    background: #fdfbf0;
+    margin: 24px;
+    padding: 32px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* Home page */
+  .greeting { text-align: center; }
+  .greeting h3 { font-size: 22px; color: #283747; margin-bottom: 16px; }
+  .greeting p { color: #4a4a4a; margin: 6px 0; font-size: 15px; }
+
+  /* Students table */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; }
+  thead tr { background: #2e86ab; color: #fff; }
+  th, td { text-align: left; padding: 14px 16px; font-size: 14.5px; white-space: nowrap; }
+  tbody tr:nth-child(odd) { background: #fdfbf0; }
+  tbody tr:nth-child(even) { background: #f2eedc; }
+
+  .avatar {
+    width: 70px; height: 70px; border-radius: 50%;
+    object-fit: cover; object-position: center top;
+    display: block; border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #2e86ab;
+  }
+
+  .btn { border: none; padding: 7px 16px; border-radius: 4px; font-size: 13.5px; cursor: pointer; color: #fff; }
+  .btn-edit { background: #27ae60; }
+  .btn-edit:hover { background: #219150; }
+  .btn-delete { background: #a64452; }
+  .btn-delete:hover { background: #8e3845; }
+
+  /* Logout page */
+  .logout-msg { text-align: center; padding: 30px 20px; }
+  .logout-title { color: #a64452; font-size: 22px; font-weight: 700; margin-bottom: 14px; }
+  .logout-sub { color: #4a4a4a; font-size: 15px; margin-bottom: 28px; line-height: 1.6; }
+
+  /* Settings form */
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-weight: 600; color: #283747; margin-bottom: 8px; font-size: 15px; }
+  .field input, .field select {
+    width: 100%; padding: 11px 14px; border: 1px solid #d8d4c4;
+    border-radius: 4px; font-size: 14px; background: #fffefb; color: #333;
+  }
+  .field input::placeholder { color: #9a9a9a; }
+  .btn-save { background: #27ae60; padding: 10px 22px; font-size: 14.5px; }
+  .btn-save:hover { background: #219150; }
+
+  /* Logout modal */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45);
+    display: flex; align-items: center; justify-content: center; z-index: 300;
+  }
+  .modal-overlay.hidden { display: none; }
+  .modal-box {
+    background: #fdfbf0; padding: 28px 32px; border-radius: 6px;
+    text-align: center; width: 90%; max-width: 320px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  }
+  .modal-box p { font-size: 15.5px; color: #283747; margin-bottom: 22px; }
+  .modal-actions { display: flex; justify-content: center; gap: 12px; }
+  .btn-secondary { background: #6c7a89; }
+  .btn-secondary:hover { background: #59656f; }
+  .btn-logout { background: #a64452; }
+  .btn-logout:hover { background: #8e3845; }
+
+  /* Responsive breakpoints — the sidebar stays on the left side at
+     every screen size, exactly like the original screenshot. On
+     narrower screens it just gets slimmer instead of moving or
+     turning into a top bar. */
+  @media (max-width: 768px) {
+    .sidebar { width: 170px; }
+    .sidebar h2 { font-size: 18px; padding: 0 16px 20px; }
+    .sidebar nav a { padding: 12px 16px; font-size: 13.5px; }
+
+    .page-header { padding: 18px 16px; font-size: 20px; }
+    .content-card { margin: 16px; padding: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .sidebar { width: 120px; }
+    .sidebar h2 { font-size: 15px; padding: 0 10px 16px; }
+    .sidebar nav a { padding: 10px 10px; font-size: 12px; }
+
+    .modal-box { padding: 22px 18px; }
+    .page-header { font-size: 15px; padding: 14px 8px; }
+    .content-card { margin: 10px; padding: 14px; }
+    th, td { padding: 8px 8px; font-size: 11.5px; }
+  }

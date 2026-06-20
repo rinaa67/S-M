@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
+<link rel="stylesheet" href="style (4).css">
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <h2>Dashboard</h2>
+    <nav>
+      <a data-page="home" class="active">Home</a>
+      <a data-page="students">Students</a>
+      <a data-page="settings">Settings</a>
+      <a data-page="logout" id="logoutLink" class="logout">Logout</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <!-- HOME PAGE -->
+    <section class="page active" id="page-home">
+      <div class="page-header">Welcome to Student Dashboard</div>
+      <div class="content-card">
+        <div class="greeting">
+          <h3>Hello Administrator 👋</h3>
+          <p>Use the sidebar to manage students, adjust settings, or securely logout.</p>
+          <p>This dashboard helps you track, update, and organize student information easily.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDENTS PAGE -->
+    <section class="page" id="page-students">
+      <div class="page-header">Student Information Dashboard</div>
+      <div class="content-card" style="padding: 0;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Photo</th><th>Name</th><th>ID</th><th>Location</th>
+                <th>Status</th><th>Gender</th><th>Edit</th><th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img class="avatar" src="suden1.jpeg" alt=></td>
+                <td>aaliya hashi</td><td>C1250009</td><td>Kaaran</td>
+                <td>Married</td><td>feMale</td>
+                <td><button class="btn btn-edit">Edit</button></td>
+                <td><button class="btn btn-delete">Delete</button></td>
+              </tr>
+              <tr>
+                <td><img class="avatar" src="suden2.jpeg"></td>
+                <td>Sabrin hashi</td><td>C1250528</td><td>hodan</td>
+                <td>Single</td><td>Female</td>
+                <td><button class="btn btn-edit">Edit</button></td>
+                <td><button class="btn btn-delete">Delete</button></td>
+              </tr>
+              <tr>
+                <td><img class="avatar" src="suden3.jpeg" ></td>
+                <td>nuura hassan</td><td>C125080</td><td>yaqshid</td>
+                <td>Single</td><td>Female</td>
+                <td><button class="btn btn-edit">Edit</button></td>
+                <td><button class="btn btn-delete">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGOUT PAGE -->
+    <section class="page" id="page-logout">
+      <div class="page-header">Logout</div>
+      <div class="content-card">
+        <div class="logout-msg">
+          <p class="logout-title">You are now logged out.</p>
+          <p class="logout-sub">Thank you for using the Student Dashboard. Click below to return to the homepage or log back in.</p>
+          <button class="btn btn-save" id="returnHome">Return to Home</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS PAGE -->
+    <section class="page" id="page-settings">
+      <div class="page-header">Settings</div>
+      <div class="content-card">
+        <h3 style="color:#283747; margin-bottom: 22px;">Profile Settings</h3>
+        <form onsubmit="event.preventDefault(); alert('Settings saved!');">
+          <div class="field">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Your username">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your email address">
+          </div>
+          <div class="field">
+            <label for="theme">Theme</label>
+            <select id="theme">
+              <option>Dark</option>
+              <option>Light</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-save">Save Settings</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    var navLinks = document.querySelectorAll('.sidebar nav a[data-page]');
+    var pages = document.querySelectorAll('.page');
+
+    function showPage(name) {
+      navLinks.forEach(function (l) { l.classList.remove('active'); });
+      var activeLink = document.querySelector('[data-page="' + name + '"]');
+      if (activeLink) activeLink.classList.add('active');
+
+      pages.forEach(function (p) { p.classList.remove('active'); });
+      var target = document.getElementById('page-' + name);
+      if (target) target.classList.add('active');
+    }
+
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        showPage(link.dataset.page);
+      });
+    });
+
+    // Return to Home from logout page
+    document.getElementById('returnHome').addEventListener('click', function () {
+      showPage('home');
+    });
+  </script>
+</body>
+</html>
